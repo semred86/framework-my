@@ -1,0 +1,4 @@
+<h1><?= $title ?? SITE_NAME; ?></h1>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ducimus, enim eos illum nobis provident totam! Accusantium, ad atque beatae consequatur distinctio eaque eum explicabo facilis fuga hic illum incidunt ipsam ipsum itaque labore laudantium libero magnam, minima mollitia nam neque nihil nobis nostrum odio omnis perspiciatis praesentium quia sequi similique sint soluta suscipit tenetur ullam ut veniam voluptate voluptates. Autem consectetur dignissimos doloremque ex nemo perspiciatis quas quidem ratione reiciendis! Corporis doloribus eius eligendi iusto perferendis quo rerum voluptas? A alias commodi cumque dolore dolorem eligendi obcaecati, provident quae ullam ut veniam voluptatibus? A accusamus aliquid commodi eius enim et eveniet, excepturi exercitationem fuga harum illo ipsam iste iure iusto laudantium magni maiores molestiae nam possimus quasi rerum similique veritatis vitae voluptate.</p>
+
