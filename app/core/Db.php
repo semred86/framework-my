@@ -4,15 +4,13 @@
 namespace App\core;
 
 
+use App\core\logger\DbLogger;
 use PDO;
 
 class Db
 {
     protected PDO $pdo;
     protected static ?Db $instance = null;
-
-    public static int $countSql = 0;
-    public static array $queries = [];
 
     /**
      * Db constructor.
@@ -50,7 +48,7 @@ class Db
      */
     public function execute(string $sql, array $params = []): bool
     {
-        self::log($sql);
+        DbLogger::log($sql);
 
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute($params);
@@ -64,7 +62,7 @@ class Db
      */
     public function fetch(string $sql, array $params = []): bool|array
     {
-        self::log($sql);
+        DbLogger::log($sql);
 
         $stmt = $this->pdo->prepare($sql);
         if ($stmt->execute($params)) {
@@ -81,22 +79,12 @@ class Db
      */
     public function fetchAll(string $sql, array $params = []): bool|array
     {
-        self::log($sql);
+        DbLogger::log($sql);
 
         $stmt = $this->pdo->prepare($sql);
         if ($stmt->execute($params)) {
             return $stmt->fetchAll(/*PDO::FETCH_ASSOC*/);
         }
         return false;
-    }
-
-    /**
-     * Log queries and their number
-     * @param string $sql
-     */
-    protected static function log(string $sql)
-    {
-        self::$countSql++;
-        self::$queries[] = $sql;
     }
 }
