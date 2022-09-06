@@ -5,15 +5,18 @@ namespace App\core\base;
 
 
 use App\core\Db;
+use App\core\SQLBuilder\MysqlQueryBuilder;
 
 abstract class Model
 {
     protected Db $db;
     protected string $table;
+    protected MysqlQueryBuilder $queryBuilder;
 
     public function __construct()
     {
         $this->db = Db::instance();
+        $this->queryBuilder = new MysqlQueryBuilder();
     }
 
     /**
@@ -32,7 +35,11 @@ abstract class Model
      */
     public function find(mixed $id): bool|array
     {
-        $sql = "SELECT * FROM {$this->table} WHERE id = ? LIMIT 1";
+        $sql = $this->queryBuilder
+            ->select($this->table, ["*"])
+            ->where("id", "?")
+            ->limit(0, 1)
+            ->getSQL();
         return $this->db->fetch($sql, [$id]);
     }
 
@@ -41,7 +48,9 @@ abstract class Model
      */
     public function findAll(): bool|array
     {
-        $sql = "SELECT * FROM {$this->table}";
+        $sql = $this->queryBuilder
+            ->select($this->table, ["*"])
+            ->getSQL();
         return $this->db->fetchAll($sql);
     }
 }

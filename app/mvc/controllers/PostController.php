@@ -46,10 +46,10 @@ class PostController extends Controller
             $this->model->update($params);
             header("Location: /post/update/$id");
         }
-        dum(DbLogger::getCountSql());
-        dum(DbLogger::getQueries());
 
         $posts = $this->model->find($id);
+        dum(DbLogger::getCountSql());
+        dum(DbLogger::getQueries());
         View::render('pages/post/update', ['title' => 'Post Update', 'id' => $id, 'posts' => $posts]);
     }
 
